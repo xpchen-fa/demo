@@ -1,27 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-	<title>焦点轮播图</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    #contain{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 960px;
+        height: 230px;
+        margin-left: -480px;
+        margin-top: -115px;
+    }
+    #pic li{
+        display: none;
+    }
+    #pic .item{
+        display: block;
+    }
+    #num{
+        position: relative;
+        margin-top: -35px;
+        margin-left: 400px;
+    }
+    #num li{
+        float: left;
+    }
+    #num .on span{
+		background:rgba(0,0,0,.5);
+	}
+    #num li span{
+		display:block;
+		width:30px;
+		height:30px;
+		margin-right:10px;
+		line-height:30px;
+		font-size:15px;
+		color:white;
+		text-align:center;
+        -webkit-border-radius:50%;
+        background:rgba(0, 0, 0, 0.2);
+    }
+    #left,#right{
+		width:30px;
+		background:rgba(0,0,0,.5);
+		text-align:center;
+		line-height:80px;
+		color:white;
+		font-weight:bold;
+		font-family:'微软雅黑';
+		font-size:25px;
+		position: absolute;
+        top:90px;
+        display: none;
+    }
+    #right{
+        right: 0px;
+    }
+    </style>
 </head>
 <body>
-<div class="container">
-	<div id="slideshow">
-		<ul class="list">
-			<li class="pic"><a href="" target="_blank"><img src="img/1.jpg"></a><span class="title">第一</span></li>
-			<li class="pic"><a href="" target="_blank"><img src="img/2.jpg"></a><span class="title">第二</span></li>
-			<li class="pic"><a href="" target="_blank"><img src="img/3.jpg"></a><span class="title">第三</span></li>
-		</ul>
-	</div>
-	<div id="slidebar">
-		<ul>
-			<li class="on"></li>
-			<li class=""></li>
-			<li class=""></li>
-		</ul>
-	</div>
+<div id="contain">
+    <ul id="pic">
+        <li class="item"><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+        <li><img src="img/3.jpg" alt=""></li>
+    </ul>
+    <ul id="num">
+        <li class="on"><span>1</span></li>
+        <li ><span>2</span></li>
+        <li ><span>3</span></li>
+    </ul>
+    <div id="left"><</div>
+    <div id="right">></div>
 </div>
-<script type="text/javascript" src="js/slideshow.js"></script>
+<script>
+    var contain = document.getElementById('contain');
+    var left = document.getElementById('left');
+    var right = document.getElementById('right');
+    var pic = document.getElementById('pic').getElementsByTagName('li');
+    var num = document.getElementById('num').getElementsByTagName('li');
+    var index = 0;
+    var prv = 0;
+    var time = 1000;
+    var n = pic.length;
+    var timer;
+    function show(){
+        timer = setInterval(function(){
+            index = index + 1 >= n ? 0 : index + 1;
+            change();
+        },time)
+    }
+    function change(){
+        pic[prv].className = "";
+        pic[index].className = "item";
+        num[prv].className = "";
+        num[index].className = "on";
+        prv = index;
+    }
+    function mouseover(){
+        clearInterval(timer);
+        left.style.display = "block";
+        right.style.display = "block";
+    }
+    function mouseout(){
+        left.style.display = "none";
+        right.style.display = "none";
+        show();
+    }
+    contain.onmouseover = mouseover;
+    contain.onmouseout = mouseout;
+    right.onclick = function(){
+        index = index + 1 >= n ? 0 : index + 1;
+        change();
+    }
+    left.onclick = function(){
+        index = index - 1 < 0 ? n-1 : index - 1;
+        change();
+    }
+    for(j=0;j<n;j++){
+        num[j].index = j;
+        num[j].onmouseover = function(){
+            index = this.index;
+            change();
+        }
+    }
+    show();
+    </script>
 </body>
 </html>
