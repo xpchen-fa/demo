@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles/layout.css" type="text/css" media="screen">
+    <title>Image Gallery</title>
+</head>
+
+<body>
+    <h1>Snapshots</h1>
+    <section>
+        <ul id="imagegallery">
+            <li>
+                <a href="images/1.jpg" title="Swimming">
+                <img src="images/1.jpg" alt="girl1"></a>
+            </li>
+            <li>
+                <a href="images/2.jpg" title="Photograph">
+                <img src="images/2.jpg" alt="girl2"></a>
+            </li>
+            <li>
+                <a href="images/3.jpg" title="Eating">
+                <img src="images/3.jpg" alt="girl3"></a>
+            </li>
+            <li>
+                <a href="images/4.jpg" title="Drinking">
+                <img src="images/4.jpg" alt="girl4"></a>
+            </li>
+        </ul>
+        <img id="placeholder" src="images/placeholder.jpg" alt="my image gallery">
+        <p id="description">Choose an image.</p>
+
+        <!-- 预留退路，把href属性设置为真实存在的URL地址后，即使JavaScript已被禁用（或遇到搜索机），这个链接也是可用的 -->
+        <a href="http://ww.baidu.com/" onclick="popUp(this.href); return false;">Example</a>
+    </section>
+    <script type="text/javascript" src="scripts/showPic.js"></script>
+</body>
+
+</html>
