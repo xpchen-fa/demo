@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>垂直水平居中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 可以不知道宽高的  这是css3里的样式;缺点:兼容性不好，只支持IE9+的浏览 */
+
+        /* #box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20%;
+            height: 20%;
+            transform: translate(-50%,-50%);
+            background: red;
+        } */
+
+        /* 知道宽高 绝对定位 兼容性好;缺点:必须知道元素的宽高*/
+
+        /* #box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -100px;
+            width: 200px;
+            height: 200px;
+            background: red;
+        } */
+
+        /* 知道宽高  兼容性较好，缺点:不支持IE7以下的浏览器 */
+
+        #box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        /* 知道宽高  flexbox */
+/* 
+        section {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        } */
+
+        /* 网格实现垂直水平居中，知道宽高 */
+/* 
+        section{
+            height: 100%;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        } */
+
+        /* table实现垂直居中 */
+
+        /* section {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        } */
+
+    </style>
+</head>
+
+<body>
+    <section>
+        <article id="box">
+            <p class="b"> 垂直居中 </p>
+            <p class="b"> 垂直居中 </p>
+            <p class="b"> 垂直居中 </p>
+        </article>
+    </section>
+</body>
+
+</html>
